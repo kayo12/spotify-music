@@ -1,0 +1,137 @@
+.player {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.player .control-music {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 60%;
+  border: 1px solid rgb(214, 145, 42);
+  background-color: #dfdbdb;
+  box-shadow: 0 0 2em 0 rgb(46, 46, 46);
+  padding: 0.5rem;
+}
+.player .control-music img {
+  margin: auto;
+  display: block;
+  height: 80%;
+  width: 80%;
+  object-fit: contain;
+}
+.player .setup-music {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: #dfdbdb;
+}
+.player .setup-music button {
+  margin-right: 0.8rem;
+  padding: 0.8rem;
+  border-radius: 50%;
+  border: none;
+  color: rgb(195 79 132 / 1);
+  background: rgb(240, 236, 236);
+  box-shadow: -2px 2px rgb(117, 115, 115);
+}
+.player .setup-music button:hover {
+  cursor: pointer;
+}
+.player .setup-music button:nth-last-of-type(3) {
+  padding: 27px;
+  font-size: 1.2rem;
+}
+.player .setup-music button:first-child {
+  padding: 10px;
+}
+.player .setup-music button:last-child {
+  padding: 10px;
+}
+.player .control-music .progress-bar {
+  width: 99%;
+  height: 3px;
+  background-color: black;
+  border: 1px solid rgb(195 79 132 / 1);
+  border-radius: 20px;
+}
+.player .control-music .progress-bar > div {
+  height: 100%;
+  width: 30%;
+  background-color: rgb(195 79 132 / 1);
+}
+.player .control-music .settings-music {
+  min-height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 0;
+}
+.player .control-music span {
+  display: block;
+  font-weight: 500;
+  height: 10%;
+  text-align: center;
+}
+.player .list-music {
+  background-color: #111010;
+  border: none;
+  display: flex;
+  height: 75%;
+  min-width: 70vw;
+  border-radius: 18px;
+}
+.player .list-music ul {
+  min-width: 40%;
+  display: inline;
+  padding-bottom: 1rem;
+}
+.player .list-music ul > li {
+  border-radius: 6px;
+  padding: 1em 0;
+  width: 100%;
+  text-align: center;
+  border: 1px solid rgb(116, 49, 116);
+  font-size: 0.8rem;
+  color: rgb(240, 236, 240);
+}
+.player .list-music ul > li i {
+  color: rgb(116, 49, 116);
+  vertical-align: middle;
+  margin-right: 1rem;
+  font-size: 1.8rem;
+}
+.player .btn-back {
+  width: 12vw;
+  justify-self: space-between;
+}
+.player .btn-back button {
+  padding: 1rem;
+  border-radius: 15px;
+  outline-style: none;
+  border: none;
+}
+
+@media (max-width: 760px) {
+  .player .list-music {
+    flex-direction: column;
+    height: 95%;
+    width: 100px;
+    box-sizing: border-box;
+  }
+
+  .player .list-music ul {
+    height: 40%;
+  }
+
+  .player .control-music {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+
+}

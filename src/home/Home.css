@@ -1,0 +1,31 @@
+*{
+    margin: 0 ;
+    padding: 0;
+    overflow-x: hidden;
+    font-family:Helvetica;
+}
+.home{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 1fr
+    95%
+    15%;
+    grid-template-areas: 
+        "nav"
+        "content"
+        "footer";    
+    height: 100vh;
+    background:  url('../assests/img/music-wallpaper.png') no-repeat 110% 80%,
+    linear-gradient(#c04848,#480048) ;
+    background-size: 60%;   
+}
+
+nav.nav{
+    grid-area: nav; 
+}
+.my-list{
+    grid-area: content;
+}
+.footer{
+    grid-area: footer;
+}

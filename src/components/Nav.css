@@ -1,0 +1,70 @@
+.nav{
+   height: 80px;
+   display: flex;
+   justify-content: space-around;
+   padding: 0.5rem 0 0 0.5rem;
+   background-color: #0e0d0d;
+}
+.nav .nav-logo{
+    display: flex;
+    align-items: center;
+    height: 80%;
+    font-size: 0.9rem;
+    overflow: hidden;
+    text-align: center;
+}
+
+.nav #logo{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #df24e6;
+    font-size: 2em;
+    font-weight: bold;
+    margin-right: 0.8rem;
+}
+.nav .nav-logo img{
+    height: 100%;
+}
+
+.nav .nav-itens{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 60vw;
+    padding: 1rem;
+}
+
+.nav .hidden-icon{
+    display: none;
+    transition: 3s;
+}
+
+.nav .nav-itens  i{
+    margin-left: 3rem;
+    font-size: 1.5rem;
+    padding-left: 3rem;
+    color: rgb(255, 255, 255);
+
+}
+
+
+.nav .nav-itens Link{
+    border: 1px solid white;
+}
+
+.nav .nav-itens i .fa-user{
+    background-color:rgb(218, 147, 54);
+    padding: 1rem;
+}
+
+@media (max-width: 775px){
+    .nav .nav-itens a{
+        display: none;
+    }
+    .nav .hidden-icon{
+        display: flex;
+        margin-right: 1rem;
+    }
+    .hidden-icon i {
+        padding-left: none;
+    }
+}
