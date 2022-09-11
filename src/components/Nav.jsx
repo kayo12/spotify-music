@@ -22,11 +22,5 @@ export default props =>
             <Link to="/mylist">
                 <i className="fa fa-list" title="Minha Lista"></i>
             </Link>
-            {/* <Link to="/profile">
-                <i className="fa fa-user" title="Perfil" ></i>
-            </Link> */}
-            <Link to="/login">
-                <i className="fa fa-sign-in" title="Login"></i>
-            </Link>
         </div>    
     </nav>

@@ -13,7 +13,6 @@ export default props =>
     <Route exact path='/profile' component={Profile}/>
     <Route exact path='/mylist' render={(prop) => <MyList {...prop} token={props.token}/> }/>
     <Route path='/player' component={Player}/>
-    <Route path='/login' component={Login}/>
-    {/* <Redirect from='*' to='/'/> */}
+    <Redirect from='*' to='/'/>
 </Switch>
 
