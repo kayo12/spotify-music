@@ -14,7 +14,7 @@ const scopes = [
 
 const login =  props => 
     <div className='login-spoti'>
-         <button className='btn-login-spoti'><a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scopes=${scopes.join("%20")}&response_type=${RESPONSE_TYPE}`}>Login Spotify</a></button>
-     </div>
+         <button className='btn-login-spoti fa fa-spotify'><a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scopes=${scopes.join("%20")}&response_type=${RESPONSE_TYPE}`}>Login Spotify</a></button>
+    </div>
 
 export default login

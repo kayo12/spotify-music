@@ -2,6 +2,9 @@
 import React from 'react';
 import './Footer.css'
 
+
+const date = new Date().getFullYear();
+
 export default props => 
     <div className="footer">
         <ul className="info-web">
@@ -18,5 +21,5 @@ export default props =>
             <li><a href="https://www.facebook.com" target="_blank"><i className="fa fa-facebook-square"></i></a></li>
             <li><a href="https://www.linkedin.com/in/kayo-henrique-b11766104/" target="_blank"><i className="fa fa-linkedin"></i></a></li>   
         </ul>
-        <span>&copy; Copyright 2021 Diamond Music</span>
+        <span>&copy; Copyright {date} Diamond Music</span>
     </div>

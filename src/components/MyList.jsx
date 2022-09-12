@@ -9,6 +9,7 @@ const initial = {
   listImgs: [""],
   listTracks: [],
   currentMusic: "",
+  loginMsg: "",
 };
 
 const icons = {
@@ -22,17 +23,30 @@ export default class Mylist extends Component {
   state = { ...initial, ...icons };
 
   getArtist() {
-    console.log(`TOKEN: ${this.props.token}`);
-    SpotApi.setAccessToken(this.props.token);
+    console.log(`TOKEN: ${this.props.token.length}`);
+
+    if (this.props.token.length > 9) {
+      SpotApi.setAccessToken(this.props.token);
+    } else {
+      console.log(this.state.loginMsg);
+    }
+    console.log();
+
     let track = document.querySelector("#inputSearch").value;
     console.log(`TRACK: ${track}`);
     SpotApi.searchTracks(track).then(
       (data) => {
         console.log("Information data", data);
-        this.setState({ listTracks: data.tracks.items });
+        if (this.state.loginMsg !== "" || this.state.loginMsg !== null) {
+          this.setState({ listTracks: data.tracks.items });
+        } else {
+          this.setState({ loginMsg: "" });
+        }
       },
       (err) => {
         console.error(err);
+        err.status === 401 &&
+          this.setState({ loginMsg: "Login necessario para realizar a busca" });
       }
     );
   }
@@ -43,7 +57,6 @@ export default class Mylist extends Component {
     console.log("Lista de classe" + trackSong.classList);
     let dur = "";
 
-    
     if (trackSong.currentTime === 0) {
       if (!this.state.currentMusic.paused && this.state.currentMusic !== "") {
         this.state.oldIcons.remove(this.state.oldIcons.item(1));
@@ -77,6 +90,9 @@ export default class Mylist extends Component {
           <button onClick={() => this.getArtist()}>Buscar</button>
         </div>
         <div className="card">
+          {this.state.loginMsg ? (
+            <span className="errMsg"> {this.state.loginMsg} </span>
+          ) : null}
           {this.state.listTracks.map((element, index) => {
             return (
               <div className="card-list-album" key={index}>

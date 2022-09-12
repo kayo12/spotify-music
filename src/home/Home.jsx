@@ -7,7 +7,7 @@ import Routes from "./Routes";
 import Footer from "../components/Footer";
 import { useEffect, useState } from "react";
 const Home = (props) => {
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState('');
 
   function getTokenUrl() {
     return decodeURIComponent(

@@ -9,7 +9,9 @@
 
 
 .btn-login-spoti{
-    height: 50%;   
+    vertical-align: middle;
+    height: 50%;
+    font-size: 1.4rem;   
     padding: 0.5rem 1rem;
     background-color: rgb(94, 228, 94);
     border: none;
@@ -17,6 +19,7 @@
 }
 
 .btn-login-spoti a{
+    padding-left: 0.5rem;
     text-decoration: none;
     color: rgb(0, 0, 0);
     font-weight: bold;
