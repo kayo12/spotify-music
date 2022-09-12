@@ -6,8 +6,6 @@ import Nav from "../components/Nav";
 import Routes from "./Routes";
 import Footer from "../components/Footer";
 import { useEffect, useState } from "react";
-import SpotifyApi from 'spotify-web-api-js'
-
 const Home = (props) => {
   const [token, setToken] = useState("");
 

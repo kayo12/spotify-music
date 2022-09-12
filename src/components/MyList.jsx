@@ -2,7 +2,6 @@
 import React, { Component } from "react";
 import SpotifyApi from "spotify-web-api-js";
 import "./MyList.css";
-import album from "../assests/img/album-eminem.jpg";
 
 const initial = {
   title: "Lista de musicas e generos",
