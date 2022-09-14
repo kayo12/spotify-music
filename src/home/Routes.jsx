@@ -13,7 +13,11 @@ const Routes = (props) => (
       path="/mylist"
       render={() => <MyList {...props} token={props.token} />}
     />
-    <Route exact path="/player" component={Player} />
+    <Route
+      exact
+      path="/player"
+      render={() => <Player {...props} token={props.token} />}
+    />
   </Switch>
 );
 
