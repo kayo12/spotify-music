@@ -96,7 +96,7 @@ export default class Mylist extends Component {
           {this.state.listTracks.map((element, index) => {
             return (
               <div className="card-list-album" key={index}>
-                <img src={element.album.images[0].url} class="img-album" />
+                <img src={element.album.images[0].url} className="img-album" />
                 <progress
                   id={element.id + `_progress`}
                   value="15"

@@ -9,7 +9,7 @@ import Login from './Login';
 export default props => 
     <div className="music"> 
         <div className="Info-music">           
-            <div class="description-music">
+            <div className="description-music">
                 <span >Dimond Music</span>
                 <p>Praesent finibus scelerisque orci at tempor. Suspendisse maximus ipsum nisl,
                      convallis maximus metus efficitur a. Sed quis est feugiat nunc ultricies iaculis

@@ -1,57 +1,67 @@
-import React, { Component, useEffect} from "react";
+import React, { Component } from "react";
 import "./Player.css";
 import imgPlayer from "../assests/img/music-song.png";
 import SpotifyApi from "spotify-web-api-js";
 // eslint-disable-next-line import/no-anonymous-default-export
 
-const SpotiApi = new SpotifyApi()
+const SpotiApi = new SpotifyApi();
 
 const stateInitial = {
-  currrentUser : '',
-  playlist: []
-}
+  currentUser: "",
+  playlist: [],
+};
 
 export default class Player extends Component {
-  state = {...stateInitial}
+  state = { ...stateInitial };
 
   componentWillMount() {
     SpotiApi.setAccessToken(this.props.token);
     SpotiApi.getMe().then(
       (data) => {
-        this.setState({currrentUser: data.id})
-     console.log(`ID do usuario: ${this.state.currrentUser}`)
+        this.setState({ currentUser: data.display_name });
+        console.log(data);
+        //  console.log(`ID do usuario: ${this.state.currrentUser}`)
       },
       (err) => {
-        console.log(`Erro ${err}`)
+        console.log(`Erro ${err}`);
       }
-    )
-    SpotiApi.getUserPlaylists(this.state.currrentUser).then(
-      (data) => {
-        console.log("playlist do usuario: " + data);
-      },
-      (err) => {
-          console.log(err)
-      }
-    )
+    );
   }
 
+  getTopTracks() {
+    console.log(`TOKEN PLAYER: ${this.props.token}`);
+    SpotiApi.setAccessToken(this.props.token);
+    console.log("entrou no parameter");
+    SpotiApi.getUserPlaylists("kayo047").then(
+      (data) => {
+        console.log(data);
+        this.setState({ playlist: data.items });
+        console.log(data);
+      },
+      (err) => {
+        console.log(err);
+        console.log("Entrou no error");
+      }
+    );
+  }
 
-  getTopTracks(){
-    
-    console.log(`TOKEN PLAYER: ${this.props.token}`)
-    // SpotiApi.setAccessToken(this.props.token);
-    console.log("entrou no parameter")
-    SpotiApi.getUserPlaylists('kayo047').then(
-        (data) => {
-            console.log("Information data", data);
-        },
+  listPlaylist() {
+    const albumList = this.state.playlist.map((current, index) => (
+      <li key={current.id}>
+        <a onClick={current.id} value={current.id} className="btn-album-list">
+          {index + 1} - {current.name}
+        </a>
+      </li>
+    ));
+    return <ul>{albumList}</ul>;
+  }
 
-        (err) => {
-          console.log(err)
-          console.log("Entrou no error")      
-        }
-    )
-
+  listPlayMusic() {
+    const playlist = this.state.playlist.map((current, index) => (
+      <li key={index}>
+        <i className="fa fa-play-circle"></i> {current.name}
+      </li>
+    ));
   }
 
   render() {
@@ -61,64 +71,34 @@ export default class Player extends Component {
           <div className="control-music">
             <img src={imgPlayer} alt="img-songs" />
             <span>Orochi - Balão</span>
-            <div class="settings-music">
+            <div className="settings-music">
               <div className="progress-bar">
                 <div></div>
               </div>
               <div className="setup-music">
                 <button>
-                  <i class="fa fa-undo"></i>
+                  <i className="fa fa-undo"></i>
                 </button>
                 <button>
-                  <i class="fa fa-backward"></i>
+                  <i className="fa fa-backward"></i>
                 </button>
                 <button onClick={() => this.getTopTracks()}>
-                  <i class="fa fa-play"></i>
+                  <i className="fa fa-play"></i>
                 </button>
                 <button>
-                  <i class="fa fa-forward"></i>
+                  <i className="fa fa-forward"></i>
                 </button>
                 <button>
-                  <i class="fa fa-volume-up"></i>
+                  <i className="fa fa-volume-up"></i>
                 </button>
               </div>
             </div>
           </div>
-          <ul>
-            <li>
-              <i className="fa fa-play-circle"></i> 1 Masculinidade
-            </li>
-            <li>
-              <i className="fa fa-play-circle"></i> 2 Lista de musicas
-            </li>
-            <li>
-              <i className="fa fa-play-circle"></i> 3 Lista de musicas
-            </li>
-            <li>
-              <i className="fa fa-play-circle"></i> 3 Lista de musicas
-            </li>
-            <li>
-              <i className="fa fa-play-circle"></i> 4 Lista de musicas
-            </li>
-            <li>
-              <i className="fa fa-play-circle"></i> 5 Lista de musicas
-            </li>
-            <li>
-              <i className="fa fa-play-circle"></i> 6 Lista de musicas
-            </li>
-            <li>
-              <i className="fa fa-play-circle"></i> 7 Lista de musicas
-            </li>
-            <li>
-              <i className="fa fa-play-circle"></i> 8 Lista de musicas
-            </li>
-            <li>
-              <i className="fa fa-play-circle"></i> 9 Lista de musicas
-            </li>
-            <li>
-              <i className="fa fa-play-circle"></i> 10 Lista de musicas
-            </li>
-          </ul>
+          {
+
+          this.listPlaylist()
+          
+          }
         </div>
       </div>
     );

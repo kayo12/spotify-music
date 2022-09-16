@@ -116,6 +116,16 @@
   border: none;
 }
 
+.btn-album-list{
+
+  padding: 0.2rem;
+  color:aliceblue;
+  border-radius: 10px;
+  font-weight: 800;
+  text-decoration: none;
+
+}
+
 @media (max-width: 760px) {
   .player .list-music {
     flex-direction: column;

@@ -11,7 +11,7 @@ export default props =>
         </div>
         <div className="nav-itens">
             <div className="hidden-icon">
-                    <i class="fa fa-bars"></i>
+                    <i className="fa fa-bars"></i>
             </div>
             <Link to='/'>
                 <i className="fa fa-home" title="Home" ></i>
