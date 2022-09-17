@@ -92,9 +92,9 @@
 }
 .player .list-music ul > li {
   border-radius: 6px;
-  padding: 1em 0;
+  padding: 1em 0.8rem;
   width: 100%;
-  text-align: center;
+  text-align: justify;
   border: 1px solid rgb(116, 49, 116);
   font-size: 0.8rem;
   color: rgb(240, 236, 240);

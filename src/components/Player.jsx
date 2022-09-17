@@ -46,13 +46,13 @@ export default class Player extends Component {
   }
 
   getPlaylistTracks(event) {
-    console.log(event.target.value)
+    console.log(`valor do id ${event.target.value}`)
     SpotiApi.getPlaylistTracks(event.target.value).then(
       (data) => {
         console.log(data);
-        // this.setState({ playlistTracks: data.items });
+        this.setState({ playlistTrack: data.items });
         this.setState({ albumOpen: true });
-        // this.setState({ playlisId: data.items });
+        this.setState({ playlisId: data.items });
         console.log(data);
       },
       (err) => {
@@ -79,9 +79,9 @@ export default class Player extends Component {
   }
 
   listMusicPlay() {
-    const playlist = this.state.playlistracks.map((current, index) => (
+    const playlist = this.state.playlistTrack.map((current, index) => (
       <li key={index}>
-        <i className="fa fa-play-circle"></i> {current.name}
+        <i className="fa fa-play-circle"></i> {index + 1} - {current.track.name}
       </li>
     ));
     return <ul>{playlist}</ul>;
