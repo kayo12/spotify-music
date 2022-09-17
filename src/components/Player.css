@@ -117,13 +117,21 @@
 }
 
 .btn-album-list{
-
-  padding: 0.2rem;
-  color:aliceblue;
-  border-radius: 10px;
+  background: none;
+  padding: 0.5rem;
+  color: rgb(176, 15, 201);
+  border-radius: 20px;
+  border: 1px solid rgb(176, 15, 201);;
   font-weight: 800;
   text-decoration: none;
+  cursor: pointer;
+  margin-left: 1rem;
 
+}
+
+.album-name{
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 @media (max-width: 760px) {

@@ -3,12 +3,12 @@ import "./Player.css";
 import imgPlayer from "../assests/img/music-song.png";
 import SpotifyApi from "spotify-web-api-js";
 // eslint-disable-next-line import/no-anonymous-default-export
-
 const SpotiApi = new SpotifyApi();
-
 const stateInitial = {
   currentUser: "",
   playlist: [],
+  playlistTrack: [],
+  albumOpen: false,
 };
 
 export default class Player extends Component {
@@ -20,7 +20,7 @@ export default class Player extends Component {
       (data) => {
         this.setState({ currentUser: data.display_name });
         console.log(data);
-        //  console.log(`ID do usuario: ${this.state.currrentUser}`)
+        console.log(`ID do usuario: ${this.state.currrentUser}`);
       },
       (err) => {
         console.log(`Erro ${err}`);
@@ -28,14 +28,31 @@ export default class Player extends Component {
     );
   }
 
-  getTopTracks() {
-    console.log(`TOKEN PLAYER: ${this.props.token}`);
-    SpotiApi.setAccessToken(this.props.token);
+  componentDidUpdate(prevProps, prevState) {
     console.log("entrou no parameter");
-    SpotiApi.getUserPlaylists("kayo047").then(
+    if (prevState.currentUser !== this.state.currentUser) {
+      SpotiApi.getUserPlaylists(this.state.currentUser).then(
+        (data) => {
+          console.log(data);
+          this.setState({ playlist: data.items });
+          console.log(data);
+        },
+        (err) => {
+          console.log(err);
+          console.log("Entrou no error");
+        }
+      );
+    }
+  }
+
+  getPlaylistTracks(event) {
+    console.log(event.target.value)
+    SpotiApi.getPlaylistTracks(event.target.value).then(
       (data) => {
         console.log(data);
-        this.setState({ playlist: data.items });
+        // this.setState({ playlistTracks: data.items });
+        this.setState({ albumOpen: true });
+        // this.setState({ playlisId: data.items });
         console.log(data);
       },
       (err) => {
@@ -48,20 +65,26 @@ export default class Player extends Component {
   listPlaylist() {
     const albumList = this.state.playlist.map((current, index) => (
       <li key={current.id}>
-        <a onClick={current.id} value={current.id} className="btn-album-list">
+        <span className="album-name">
           {index + 1} - {current.name}
-        </a>
+        </span>
+        <button
+          onClick={(e) => this.getPlaylistTracks(e)}
+          value={current.id}
+          className="btn-album-list fa fa-arrow-right"
+        ></button>
       </li>
     ));
     return <ul>{albumList}</ul>;
   }
 
-  listPlayMusic() {
-    const playlist = this.state.playlist.map((current, index) => (
+  listMusicPlay() {
+    const playlist = this.state.playlistracks.map((current, index) => (
       <li key={index}>
         <i className="fa fa-play-circle"></i> {current.name}
       </li>
     ));
+    return <ul>{playlist}</ul>;
   }
 
   render() {
@@ -82,7 +105,7 @@ export default class Player extends Component {
                 <button>
                   <i className="fa fa-backward"></i>
                 </button>
-                <button onClick={() => this.getTopTracks()}>
+                <button>
                   <i className="fa fa-play"></i>
                 </button>
                 <button>
@@ -94,11 +117,7 @@ export default class Player extends Component {
               </div>
             </div>
           </div>
-          {
-
-          this.listPlaylist()
-          
-          }
+          {this.state.albumOpen ? this.listMusicPlay() : this.listPlaylist()}
         </div>
       </div>
     );
