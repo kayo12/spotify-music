@@ -69,7 +69,7 @@ export default class Player extends Component {
       (data) => {
         console.log("Pegou o track ID");
         this.setState({currentTrack: data})
-        console.log(this.state.currentTrack.album.image[1]);
+        console.log(this.state.currentTrack);
       },
       (err) => {
         console.log("Deu ruim ao pegar a track");
@@ -104,7 +104,7 @@ export default class Player extends Component {
             this.getPlayerTrack(e);
           }}
         ></button>{" "}
-        {index + 1} -{current.track.name}
+        {index + 1} - {current.track.name}
       </li>
     ));
     return <ul>{playlist}</ul>;
@@ -121,7 +121,9 @@ export default class Player extends Component {
             <span className="player-name">{this.state.currentTrack.name}</span>
             <div className="settings-music">
               <div className="progress-bar">
-                <div></div>
+                <div>
+                  <audio src=""></audio>
+                </div>
               </div>
               <div className="setup-music">
                 <button>

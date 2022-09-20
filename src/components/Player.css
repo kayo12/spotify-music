@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  width: 60%;
+  width: 40%;
   border: 1px solid rgb(214, 145, 42);
   background-color: #dfdbdb;
   box-shadow: 0 0 2em 0 rgb(46, 46, 46);
@@ -65,7 +65,7 @@
   background-color: rgb(195 79 132 / 1);
 }
 .player .control-music .settings-music {
-  min-height: 20%;
+  min-height: 25%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -87,18 +87,21 @@
   border-radius: 18px;
 }
 .player .list-music ul {
-  min-width: 40%;
+  min-width: 60%;
   display: inline;
   padding-bottom: 1rem;
 }
 .player .list-music ul > li {
   border-radius: 6px;
   padding: 1em 0.8rem;
-  width: 100%;
+  min-width: 100px;
   text-align: justify;
   border: 1px solid rgb(116, 49, 116);
   font-size: 0.8rem;
   color: rgb(240, 236, 240);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .player .list-music ul > li > .fa-play-circle {
   color: rgb(116, 49, 116);
@@ -124,6 +127,7 @@
   font-size: 1rem;
   font-style: oblique;
   margin-top: 0.5rem;
+  white-space: nowrap;
 }
 .btn-album-list{
   background: none;
