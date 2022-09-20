@@ -12,7 +12,7 @@
   border: 1px solid rgb(214, 145, 42);
   background-color: #dfdbdb;
   box-shadow: 0 0 2em 0 rgb(46, 46, 46);
-  padding: 0.5rem;
+  padding: 1rem;
 }
 .player .control-music img {
   margin: auto;
@@ -28,6 +28,7 @@
   height: 100%;
   width: 100%;
   background-color: #dfdbdb;
+  padding: 0.5rem;
 }
 .player .setup-music button {
   margin-right: 0.8rem;
@@ -42,7 +43,7 @@
   cursor: pointer;
 }
 .player .setup-music button:nth-last-of-type(3) {
-  padding: 27px;
+  padding: 20px;
   font-size: 1.2rem;
 }
 .player .setup-music button:first-child {
@@ -64,7 +65,7 @@
   background-color: rgb(195 79 132 / 1);
 }
 .player .control-music .settings-music {
-  min-height: 30%;
+  min-height: 20%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -99,8 +100,11 @@
   font-size: 0.8rem;
   color: rgb(240, 236, 240);
 }
-.player .list-music ul > li i {
+.player .list-music ul > li > .fa-play-circle {
   color: rgb(116, 49, 116);
+  cursor: pointer;
+  word-wrap: none;
+  padding: 0.8rem;
   vertical-align: middle;
   margin-right: 1rem;
   font-size: 1.8rem;
@@ -116,6 +120,11 @@
   border: none;
 }
 
+.player-name{
+  font-size: 1rem;
+  font-style: oblique;
+  margin-top: 0.5rem;
+}
 .btn-album-list{
   background: none;
   padding: 0.5rem;
@@ -125,7 +134,7 @@
   font-weight: 800;
   text-decoration: none;
   cursor: pointer;
-  margin-left: 1rem;
+  margin-right: 1rem;
 
 }
 
