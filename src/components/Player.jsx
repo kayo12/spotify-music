@@ -10,6 +10,7 @@ const stateInitial = {
   playlistTrack: [],
   albumOpen: false,
   currentTrack: "",
+  msgLogin: "Realize login no spotify para exibir seus albuns"
 };
 
 export default class Player extends Component {
@@ -27,6 +28,7 @@ export default class Player extends Component {
         console.log(`Erro ${err}`);
       }
     );
+    
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -68,7 +70,7 @@ export default class Player extends Component {
     SpotiApi.getTrack(trackId.target.value).then(
       (data) => {
         console.log("Pegou o track ID");
-        this.setState({currentTrack: data})
+        this.setState({ currentTrack: data });
         console.log(this.state.currentTrack);
       },
       (err) => {
@@ -79,7 +81,9 @@ export default class Player extends Component {
   }
 
   listPlaylist() {
-    const albumList = this.state.playlist.map((current, index) => (
+    const albumList =
+    this.state.playlist.length > 0 ? (
+    this.state.playlist.map((current, index) => (
       <li key={current.id}>
         <button
           onClick={(e) => this.getPlaylistTracks(e)}
@@ -90,23 +94,33 @@ export default class Player extends Component {
           {index + 1} - {current.name}
         </span>
       </li>
-    ));
+    ))
+    ) : (
+      <li class="msg-login">
+        <span>{this.state.msgLogin}</span>
+      </li>
+    );
     return <ul>{albumList}</ul>;
   }
 
   listMusicPlay() {
-    const playlist = this.state.playlistTrack.map((current, index) => (
-      <li key={index}>
-        <button
-          className="fa fa-play-circle"
-          value={current.track.id}
-          onClick={(e) => {
-            this.getPlayerTrack(e);
-          }}
-        ></button>{" "}
-        {index + 1} - {current.track.name}
-      </li>
-    ));
+    const playlist =
+      
+        this.state.playlistTrack.map((current, index) => (
+          <li key={index}>
+            <button
+              className="fa fa-play-circle"
+              value={current.track.id}
+              onClick={(e) => {
+                this.getPlayerTrack(e);
+              }}
+            ></button>{" "}
+            {index + 1} - {current.track.name}
+          </li>
+        ))
+       
+
+
     return <ul>{playlist}</ul>;
   }
 
@@ -116,8 +130,16 @@ export default class Player extends Component {
         <div className="list-music">
           <div className="control-music">
             {
-            <img className="player-img" src={this.state.currentTrack === "" ? imgPlayer : this.state.currentTrack.album.images[1].url} alt="img-songs" />
-          }
+              <img
+                className="player-img"
+                src={
+                  this.state.currentTrack === ""
+                    ? imgPlayer
+                    : this.state.currentTrack.album.images[1].url
+                }
+                alt="img-songs"
+              />
+            }
             <span className="player-name">{this.state.currentTrack.name}</span>
             <div className="settings-music">
               <div className="progress-bar">
@@ -144,7 +166,13 @@ export default class Player extends Component {
               </div>
             </div>
           </div>
-          {this.state.albumOpen ? this.listMusicPlay() : this.listPlaylist()}
+         {
+            this.state.albumOpen ? (
+              this.listMusicPlay()
+            ) : (
+              this.listPlaylist()
+            )
+         }
         </div>
       </div>
     );
