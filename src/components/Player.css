@@ -94,7 +94,7 @@
 .player .list-music ul > li {
   border-radius: 6px;
   padding: 1em 0.8rem;
-  min-width: 100px;
+  min-width: 100%;
   text-align: justify;
   border: 1px solid rgb(116, 49, 116);
   font-size: 0.8rem;

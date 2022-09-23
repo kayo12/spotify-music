@@ -10,7 +10,7 @@ const stateInitial = {
   playlistTrack: [],
   albumOpen: false,
   currentTrack: "",
-  msgLogin: "Realize login no spotify para exibir seus albuns"
+  msgLogin: "Necessario realizar o login no spotify para exibir seus albuns"
 };
 
 export default class Player extends Component {
@@ -105,7 +105,6 @@ export default class Player extends Component {
 
   listMusicPlay() {
     const playlist =
-      
         this.state.playlistTrack.map((current, index) => (
           <li key={index}>
             <button
@@ -114,14 +113,35 @@ export default class Player extends Component {
               onClick={(e) => {
                 this.getPlayerTrack(e);
               }}
-            ></button>{" "}
+            ></button>
             {index + 1} - {current.track.name}
           </li>
         ))
-       
 
 
     return <ul>{playlist}</ul>;
+  }
+
+  controlPlayer(event, currentMusic){
+      let audio = document.getElementById(currentMusic.id)
+      
+      let control = event.target.id
+      console.log(audio.duration)
+      console.log(control)
+    switch(control){
+      case "play":
+        let progress = document.getElementById("progress-current");
+        audio.play()
+        setInterval(function () {
+            console.log(Math.floor(audio.currentTime))
+        }, 1000)
+        
+      break;
+     default:
+      console.log("Deu ruim");
+     break;  
+    }
+
   }
 
   render() {
@@ -141,26 +161,27 @@ export default class Player extends Component {
               />
             }
             <span className="player-name">{this.state.currentTrack.name}</span>
+            <audio id={this.state.currentTrack.id} src={this.state.currentTrack.preview_url} ></audio>
             <div className="settings-music">
               <div className="progress-bar">
-                <div>
+                <div id="progress-current">
                   <audio src=""></audio>
                 </div>
               </div>
               <div className="setup-music">
-                <button>
+                <button id="replay" onClick={(e) => {this.controlPlayer(e,this.state.currentTrack)}}>
                   <i className="fa fa-undo"></i>
                 </button>
-                <button>
+                <button id="prev" onClick={(e) => {this.controlPlayer(e,this.state.currentTrack)}}>
                   <i className="fa fa-backward"></i>
                 </button>
-                <button>
+                <button id="play" onClick={(e) => {this.controlPlayer(e,this.state.currentTrack)}}>
                   <i className="fa fa-play"></i>
                 </button>
-                <button>
+                <button id="next" onClick={(e) => {this.controlPlayer(e,this.state.currentTrack)}}>
                   <i className="fa fa-forward"></i>
                 </button>
-                <button>
+                <button id="val" onClick={(e) => {this.controlPlayer(e,this.state.currentTrack)}}>
                   <i className="fa fa-volume-up"></i>
                 </button>
               </div>
