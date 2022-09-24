@@ -131,11 +131,18 @@ export default class Player extends Component {
     switch(control){
       case "play":
         let progress = document.getElementById("progress-current");
+
+        
         audio.play()
         setInterval(function () {
-            console.log(Math.floor(audio.currentTime))
-        }, 1000)
+           let min =  audio.currentTime.toFixed(2);
+          let porcent = Number.parseFloat(min) / audio.duration * 100
+          progress.style.width = Number(porcent).toFixed(0).toString() + "%" 
+        }, 1)
         
+      break;
+      case "":
+
       break;
      default:
       console.log("Deu ruim");
