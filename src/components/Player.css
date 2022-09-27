@@ -103,7 +103,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.player .list-music ul > li > .fa-play-circle {
+.player .list-music ul > li > .fa-play-circle, .fa-times-circle {
   color: rgb(116, 49, 116);
   cursor: pointer;
   word-wrap: none;

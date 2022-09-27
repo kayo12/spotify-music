@@ -10,7 +10,8 @@ const stateInitial = {
   playlistTrack: [],
   albumOpen: false,
   currentTrack: "",
-  msgLogin: "Necessario realizar o login no spotify para exibir seus albuns"
+  oldTrack: "",
+  msgLogin: "Necessario realizar o login no spotify para exibir seus albuns",
 };
 
 export default class Player extends Component {
@@ -28,7 +29,6 @@ export default class Player extends Component {
         console.log(`Erro ${err}`);
       }
     );
-    
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -38,7 +38,7 @@ export default class Player extends Component {
         (data) => {
           console.log(data);
           this.setState({ playlist: data.items });
-          console.log(data);
+          console.log("Itens: " + data);
         },
         (err) => {
           console.log(err);
@@ -66,8 +66,8 @@ export default class Player extends Component {
   }
 
   getPlayerTrack(trackId) {
-    console.log(`ID da track ${trackId.target.value}`);
-    SpotiApi.getTrack(trackId.target.value).then(
+    console.log(`ID da track ${trackId}`);
+    SpotiApi.getTrack(trackId).then(
       (data) => {
         console.log("Pegou o track ID");
         this.setState({ currentTrack: data });
@@ -82,73 +82,77 @@ export default class Player extends Component {
 
   listPlaylist() {
     const albumList =
-    this.state.playlist.length > 0 ? (
-    this.state.playlist.map((current, index) => (
-      <li key={current.id}>
-        <button
-          onClick={(e) => this.getPlaylistTracks(e)}
-          value={current.id}
-          className="btn-album-list fa fa-arrow-right"
-        ></button>
-        <span className="album-name">
-          {index + 1} - {current.name}
-        </span>
-      </li>
-    ))
-    ) : (
-      <li class="msg-login">
-        <span>{this.state.msgLogin}</span>
-      </li>
-    );
+      this.state.playlist.length > 0 ? (
+        this.state.playlist.map((current, index) => (
+          <li key={current.id}>
+            <button
+              onClick={(e) => this.getPlaylistTracks(e)}
+              value={current.id}
+              className="btn-album-list fa fa-arrow-right"
+            ></button>
+            <span className="album-name">
+              {index + 1} - {current.name}
+            </span>
+          </li>
+        ))
+      ) : (
+        <li class="msg-login">
+          <span>{this.state.msgLogin}</span>
+        </li>
+      );
     return <ul>{albumList}</ul>;
   }
 
   listMusicPlay() {
-    const playlist =
-        this.state.playlistTrack.map((current, index) => (
-          <li key={index}>
-            <button
-              className="fa fa-play-circle"
-              value={current.track.id}
-              onClick={(e) => {
-                this.getPlayerTrack(e);
-              }}
-            ></button>
-            {index + 1} - {current.track.name}
-          </li>
-        ))
-
+    const playlist = this.state.playlistTrack.map((current, index) => (
+      <li key={index}>
+        <button
+          className={current.track.preview_url === null ? "fa fa-times-circle" : "fa fa-play-circle"}
+          value={current.track.id}
+          onClick={(e) => {
+            this.getPlayerTrack(e.target.value);
+          }}
+        ></button>
+        {index + 1} - {current.track.name}
+      </li>
+    ));
 
     return <ul>{playlist}</ul>;
   }
 
-  controlPlayer(event, currentMusic){
-      let audio = document.getElementById(currentMusic.id)
-      
-      let control = event.target.id
-      console.log(audio.duration)
-      console.log(control)
-    switch(control){
+  controlPlayer(event, currentMusic) {
+    console.log(`Entrou dentro do controlPlayer`);
+    let audio = document.getElementById(currentMusic.id);
+    this.setState({oldTrack: audio.id})
+    let control = event.target.id;
+    console.log(`control: ${control}`)
+    switch (control) {
       case "play":
         let progress = document.getElementById("progress-current");
-
-        
-        audio.play()
+        audio.play();
         setInterval(function () {
-           let min =  audio.currentTime.toFixed(2);
-          let porcent = Number.parseFloat(min) / audio.duration * 100
-          progress.style.width = Number(porcent).toFixed(0).toString() + "%" 
-        }, 1)
-        
+          let seconds = audio.currentTime.toFixed(2);
+          let porcent = (Number.parseFloat(seconds) / audio.duration) * 100;
+          progress.style.width = Number(porcent).toFixed(0).toString() + "%";
+        }, 1);
+        break;
+      case "next":
+        let next = this.state.playlistTrack.findIndex((find) => {
+          return find.track.id === currentMusic.id;
+        });
+        this.getPlayerTrack(this.state.playlistTrack[next + 1].track.id);
+        break;
+      case "prev":  
+      let prev = this.state.playlistTrack.findIndex((find) => {
+        return find.track.id === currentMusic.id;
+      });
+      this.getPlayerTrack(this.state.playlistTrack[prev - 1].track.id);
       break;
-      case "":
+      default:
 
-      break;
-     default:
-      console.log("Deu ruim");
-     break;  
+        console.log(`Deu ruim - control:  ${control}`);
+        break;
     }
-
   }
 
   render() {
@@ -167,8 +171,12 @@ export default class Player extends Component {
                 alt="img-songs"
               />
             }
-            <span className="player-name">{this.state.currentTrack.name}</span>
-            <audio id={this.state.currentTrack.id} src={this.state.currentTrack.preview_url} ></audio>
+            <span className="player-name">{this.state.currentTrack.name}
+            </span>
+            <audio
+              id={this.state.currentTrack.id}
+              src={this.state.currentTrack.preview_url}
+            ></audio>
             <div className="settings-music">
               <div className="progress-bar">
                 <div id="progress-current">
@@ -176,31 +184,50 @@ export default class Player extends Component {
                 </div>
               </div>
               <div className="setup-music">
-                <button id="replay" onClick={(e) => {this.controlPlayer(e,this.state.currentTrack)}}>
+                <button
+                  id="replay"
+                  onClick={(e) => {
+                    this.controlPlayer(e, this.state.currentTrack);
+                  }}
+                >
                   <i className="fa fa-undo"></i>
                 </button>
-                <button id="prev" onClick={(e) => {this.controlPlayer(e,this.state.currentTrack)}}>
+                <button
+                  id="prev"
+                  onClick={(e) => {
+                    this.controlPlayer(e, this.state.currentTrack);
+                  }}
+                >
                   <i className="fa fa-backward"></i>
                 </button>
-                <button id="play" onClick={(e) => {this.controlPlayer(e,this.state.currentTrack)}}>
+                <button
+                  id="play"
+                  onClick={(e) => {
+                    this.controlPlayer(e, this.state.currentTrack);
+                  }}
+                >
                   <i className="fa fa-play"></i>
                 </button>
-                <button id="next" onClick={(e) => {this.controlPlayer(e,this.state.currentTrack)}}>
+                <button
+                  id="next"
+                  onClick={(e) => {
+                    this.controlPlayer(e, this.state.currentTrack);
+                  }}
+                >
                   <i className="fa fa-forward"></i>
                 </button>
-                <button id="val" onClick={(e) => {this.controlPlayer(e,this.state.currentTrack)}}>
+                <button
+                  id="val"
+                  onClick={(e) => {
+                    this.controlPlayer(e, this.state.currentTrack);
+                  }}
+                >
                   <i className="fa fa-volume-up"></i>
                 </button>
               </div>
             </div>
           </div>
-         {
-            this.state.albumOpen ? (
-              this.listMusicPlay()
-            ) : (
-              this.listPlaylist()
-            )
-         }
+          {this.state.albumOpen ? this.listMusicPlay() : this.listPlaylist()}
         </div>
       </div>
     );
