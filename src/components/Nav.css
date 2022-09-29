@@ -30,7 +30,7 @@
     justify-content: flex-end;
     align-items: center;
     width: 60vw;
-    padding: 1rem;
+    padding: 0.8rem;
 }
 
 .nav .hidden-icon{
@@ -43,9 +43,7 @@
     font-size: 1.5rem;
     padding-left: 3rem;
     color: rgb(255, 255, 255);
-
 }
-
 
 .nav .nav-itens Link{
     border: 1px solid white;
@@ -57,14 +55,31 @@
 }
 
 @media (max-width: 775px){
-    .nav .nav-itens a{
-        display: none;
+    .nav{
+        height: 120px;
+    }
+    .nav .nav-itens .open-icon{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
     }
     .nav .hidden-icon{
-        display: flex;
-        margin-right: 1rem;
+        display: flex;  
     }
-    .hidden-icon i {
-        padding-left: none;
+
+    .nav .nav-itens{
+        align-items: flex-start;
+    }
+
+    .nav .nav-itens i{
+        margin-left: 0;
+        padding-left: 0;
+    }
+    .hidden-icon button {
+        background-color: none;
+        font-size: 1rem;
     }
 }

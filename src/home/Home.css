@@ -3,20 +3,23 @@
     padding: 0;
     overflow-x: hidden;
     font-family:Helvetica;
+    
 }
+body{
+    background:  url('../assests/img/music-wallpaper.png') no-repeat 130% 60%,
+    linear-gradient(#c04848,#480048) ;
+  }
 .home{
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: 1fr
     95%
-    15%;
+    5%;
     grid-template-areas: 
         "nav"
         "content"
         "footer";    
     height: 100vh;
-    background:  url('../assests/img/music-wallpaper.png') no-repeat 110% 80%,
-    linear-gradient(#c04848,#480048) ;
     background-size: 60%;   
 }
 
