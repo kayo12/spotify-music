@@ -17,8 +17,7 @@ export default props =>
                       Curabitur consequat, felis quis feugiat venenatis, augue diam posuere augue,
                        eu molestie augue velit ornare tellus. Duis sit amet iaculis justo, quis volutpat elit.
                         Fusce pellentesque fermentum justo id tempus. Praesent luctus sem sit amet lacus pellentesque 
-                        congue. Vestibulum imperdiet tortor nisi, sit amet posuere dui accumsan et. In vel est luctus tortor aliquet venenatis sit amet id mauris. Aenean viverra turpis at erat pellentesque varius. Proin scelerisque blandit condimentum. Fusce maximus nunc urna, id tincidunt orci tristique 
-                    eu. Ut mattis porttitor purus, vel mollis mi pulvinar eget. Praesent sagittis sollicitudin bibendum.
+                        congue.
                     </p>
                     <Login/>
             </div>
