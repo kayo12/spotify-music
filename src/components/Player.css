@@ -83,7 +83,6 @@
   border: none;
   display: flex;
   height: 75%;
-  min-width: 70vw;
   border-radius: 18px;
 }
 .player .list-music ul {
@@ -162,11 +161,11 @@
   font-size: 1rem;
 }
 
-@media only screen and (max-width: 760px) {
+@media only screen and (max-width: 768px) {
   .player .list-music {
     flex-direction: column;
     height: 95%;
-    width: 100px;
+    max-width: 340px;
     box-sizing: border-box;
   }
 

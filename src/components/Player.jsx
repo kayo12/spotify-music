@@ -129,6 +129,7 @@ export default class Player extends Component {
     switch (control) {
       case "play":
         let progress = document.getElementById("progress-current");
+        
         audio.play();
         setInterval(function () {
           let seconds = audio.currentTime.toFixed(2);
@@ -149,7 +150,6 @@ export default class Player extends Component {
       this.getPlayerTrack(this.state.playlistTrack[prev - 1].track.id);
       break;
       default:
-
         console.log(`Deu ruim - control:  ${control}`);
         break;
     }
