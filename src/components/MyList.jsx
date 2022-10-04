@@ -65,7 +65,14 @@ export default class Mylist extends Component {
       }
       event.target.classList.remove(this.state.play);
       event.target.classList.add(this.state.pause);
+      let progress = document.getElementById(`${trackId}_progress`);
+      console.log(progress.value)
       trackSong.play();
+      setInterval(function () {
+        let seconds = trackSong.currentTime.toFixed(2);
+        let porcent = (Number.parseFloat(seconds) / trackSong.duration) * 100;
+        progress.value = parseInt(porcent.toFixed(0),10);
+      }, 1);
       dur = trackSong.duration;
       console.log(`duration: ${dur}`);
     } else {
@@ -99,7 +106,7 @@ export default class Mylist extends Component {
                 <img src={element.album.images[0].url} className="img-album" />
                 <progress
                   id={element.id + `_progress`}
-                  value="15"
+                  value="1"
                   max="100"
                   className="card-progress"
                 ></progress>
