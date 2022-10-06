@@ -124,18 +124,22 @@ export default class Player extends Component {
     console.log(`Entrou dentro do controlPlayer`);
     let audio = document.getElementById(currentMusic.id);
     this.setState({oldTrack: audio.id})
-    let control = event.target.id;
+    let control = Number(event);
     console.log(`control: ${control}`)
     switch (control) {
-      case "play":
+      case 1:
         let progress = document.getElementById("progress-current");
-        
+        if(audio.currentTime === 0){
+        audio.load();
         audio.play();
         setInterval(function () {
           let seconds = audio.currentTime.toFixed(2);
           let porcent = (Number.parseFloat(seconds) / audio.duration) * 100;
           progress.style.width = Number(porcent).toFixed(0).toString() + "%";
         }, 1);
+      }else{
+        audio.load();
+      }
         break;
       case "next":
         let next = this.state.playlistTrack.findIndex((find) => {
@@ -185,41 +189,41 @@ export default class Player extends Component {
               </div>
               <div className="setup-music">
                 <button
-                  id="replay"
+                  value="replay"
                   onClick={(e) => {
-                    this.controlPlayer(e, this.state.currentTrack);
+                    this.controlPlayer(e.target.value, this.state.currentTrack);
                   }}
                 >
                   <i className="fa fa-undo"></i>
                 </button>
                 <button
-                  id="prev"
+                  value="prev"
                   onClick={(e) => {
-                    this.controlPlayer(e, this.state.currentTrack);
+                    this.controlPlayer(e.target.value, this.state.currentTrack);
                   }}
                 >
                   <i className="fa fa-backward"></i>
                 </button>
                 <button
-                  id="play"
+                  value="1"
                   onClick={(e) => {
-                    this.controlPlayer(e, this.state.currentTrack);
+                    this.controlPlayer(e.target.value, this.state.currentTrack);
                   }}
                 >
                   <i className="fa fa-play"></i>
                 </button>
                 <button
-                  id="next"
+                  value="next"
                   onClick={(e) => {
-                    this.controlPlayer(e, this.state.currentTrack);
+                    this.controlPlayer(e.target.value, this.state.currentTrack);
                   }}
                 >
                   <i className="fa fa-forward"></i>
                 </button>
                 <button
-                  id="val"
+                  value="val"
                   onClick={(e) => {
-                    this.controlPlayer(e, this.state.currentTrack);
+                    this.controlPlayer(e.target.value, this.state.currentTrack);
                   }}
                 >
                   <i className="fa fa-volume-up"></i>
