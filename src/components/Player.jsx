@@ -96,14 +96,12 @@ export default class Player extends Component {
     ));
 
     if (this.state.playlist.length > 0) return <ul>{albumList}</ul>;
-
     return (
       <div className="msg-login">
         <span>{this.state.msgLogin}</span>
       </div>
     );
   }
-
   listMusicPlay() {
     const playlist = this.state.playlistTrack.map((current, index) => (
       <li key={index}>

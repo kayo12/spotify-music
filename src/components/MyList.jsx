@@ -62,7 +62,6 @@ export default class Mylist extends Component {
       event.target.classList.remove(this.state.play);
       event.target.classList.add(this.state.pause);
       let progress = document.getElementById(`${trackId}_progress`);
-      console.log(progress.value)
       trackSong.play();
       setInterval(function () {
         let seconds = trackSong.currentTime.toFixed(2);
