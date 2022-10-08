@@ -11,13 +11,11 @@ const initial = {
   currentMusic: "",
   loginMsg: "",
 };
-
 const icons = {
   pause: "fa-pause",
   play: "fa-play",
   oldIcons: "fa-play",
 };
-
 const SpotApi = new SpotifyApi();
 export default class Mylist extends Component {
   state = { ...initial, ...icons };
@@ -31,7 +29,6 @@ export default class Mylist extends Component {
       console.log(this.state.loginMsg);
     }
     console.log();
-
     let track = document.querySelector("#inputSearch").value;
     console.log(`TRACK: ${track}`);
     SpotApi.searchTracks(track).then(

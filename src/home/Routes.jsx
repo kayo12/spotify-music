@@ -7,7 +7,7 @@ import MyList from "../components/MyList";
 
 const Routes = (props) => (
   <Switch>
-    <Route exact path="/" component={Music} />
+    <Route  path="/" component={Music} />
     <Route
       exact
       path="/mylist"

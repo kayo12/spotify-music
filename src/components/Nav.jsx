@@ -5,20 +5,6 @@ import "./Nav.css";
 import { Link } from "react-router-dom";
 import Logo from "../assests/img/logo-dimond.png";
 
-
-
-// const isMobile = () => window.innerWidth >= 768;
-
-
-// function ShowAppName() {
-//   if (isMobile()) return <span id="logo">Dimond Music</span>;
-// }
-
-// window.addEventListener("resize", ShowAppName());
-// isMobile();
-
-// console.log(isMobile());
-
 export default (props) => (
   <nav className="nav">
     <div className="nav-logo">
