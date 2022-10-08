@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/spotify-music/static/css/main.86aca3db.css",
+    "main.js": "/spotify-music/static/js/main.4370f8ba.js",
+    "static/js/496.aac9d9d6.chunk.js": "/spotify-music/static/js/496.aac9d9d6.chunk.js",
+    "static/media/logo-dimond.png": "/spotify-music/static/media/logo-dimond.abadec9f9e05e7e252bb.png",
+    "static/media/music-wallpaper.png": "/spotify-music/static/media/music-wallpaper.3b499c915105ab29e031.png",
+    "static/media/fontawesome-webfont.svg?v=4.7.0": "/spotify-music/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
+    "static/media/home-listen-music.png": "/spotify-music/static/media/home-listen-music.acc6789d9872e45ccffd.png",
+    "static/media/fontawesome-webfont.eot": "/spotify-music/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
+    "static/media/fontawesome-webfont.ttf?v=4.7.0": "/spotify-music/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
+    "static/media/fontawesome-webfont.woff?v=4.7.0": "/spotify-music/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
+    "static/media/fontawesome-webfont.woff2?v=4.7.0": "/spotify-music/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
+    "static/media/music-song.png": "/spotify-music/static/media/music-song.bb129ff840f294a687e0.png",
+    "index.html": "/spotify-music/index.html",
+    "main.86aca3db.css.map": "/spotify-music/static/css/main.86aca3db.css.map",
+    "main.4370f8ba.js.map": "/spotify-music/static/js/main.4370f8ba.js.map",
+    "496.aac9d9d6.chunk.js.map": "/spotify-music/static/js/496.aac9d9d6.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.86aca3db.css",
+    "static/js/main.4370f8ba.js"
+  ]
+}

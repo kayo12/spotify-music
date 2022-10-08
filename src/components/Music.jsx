@@ -19,7 +19,7 @@ export default props =>
                         Fusce pellentesque fermentum justo id tempus. Praesent luctus sem sit amet lacus pellentesque 
                         congue.
                     </p>
-                    <Login/>
+                    {/* <Login/> */}
             </div>
             <div className="img-music">
                 <img src={Listen_Music}/>
