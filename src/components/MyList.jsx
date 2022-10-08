@@ -56,7 +56,6 @@ export default class Mylist extends Component {
     console.log(event.target.className);
     console.log("Lista de classe" + trackSong.classList);
     let dur = "";
-
     if (trackSong.currentTime === 0) {
       if (!this.state.currentMusic.paused && this.state.currentMusic !== "") {
         this.state.oldIcons.remove(this.state.oldIcons.item(1));

@@ -148,6 +148,7 @@
 
 .msg-login{
   display: flex;
+  padding: 0.8rem;
   width: 60%;
   height: auto;
   justify-content: center;

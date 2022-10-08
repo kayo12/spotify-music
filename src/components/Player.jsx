@@ -11,7 +11,7 @@ const stateInitial = {
   albumOpen: false,
   currentTrack: "",
   oldTrack: "",
-  msgLogin: "Necessario realizar o login no spotify para exibir seus albuns",
+  msgLogin: "Necessario realizar login no spotify para exibir seus albuns",
 };
 
 export default class Player extends Component {
@@ -81,33 +81,37 @@ export default class Player extends Component {
   }
 
   listPlaylist() {
-    const albumList =
-      this.state.playlist.length > 0 ? (
-        this.state.playlist.map((current, index) => (
-          <li key={current.id}>
-            <button
-              onClick={(e) => this.getPlaylistTracks(e)}
-              value={current.id}
-              className="btn-album-list fa fa-arrow-right"
-            ></button>
-            <span className="album-name">
-              {index + 1} - {current.name}
-            </span>
-          </li>
-        ))
-      ) : (
-        <li class="msg-login">
-          <span>{this.state.msgLogin}</span>
-        </li>
-      );
-    return <ul>{albumList}</ul>;
+    const albumList = this.state.playlist.map((current, index) => (
+      <li key={current.id}>
+        <button
+          onClick={(e) => this.getPlaylistTracks(e)}
+          value={current.id}
+          className="btn-album-list fa fa-arrow-right"
+        ></button>
+        <span className="album-name">
+          {index + 1} - {current.name}
+        </span>
+      </li>
+    ));
+
+    if (this.state.playlist.length > 0) return <ul>{albumList}</ul>;
+
+    return (
+      <div className="msg-login">
+        <span>{this.state.msgLogin}</span>
+      </div>
+    );
   }
 
   listMusicPlay() {
     const playlist = this.state.playlistTrack.map((current, index) => (
       <li key={index}>
         <button
-          className={current.track.preview_url === null ? "fa fa-times-circle" : "fa fa-play-circle"}
+          className={
+            current.track.preview_url === null
+              ? "fa fa-times-circle"
+              : "fa fa-play-circle"
+          }
           value={current.track.id}
           onClick={(e) => {
             this.getPlayerTrack(e.target.value);
@@ -123,23 +127,23 @@ export default class Player extends Component {
   controlPlayer(event, currentMusic) {
     console.log(`Entrou dentro do controlPlayer`);
     let audio = document.getElementById(currentMusic.id);
-    this.setState({oldTrack: audio.id})
+    this.setState({ oldTrack: audio.id });
     let control = Number(event);
-    console.log(`control: ${control}`)
+    console.log(`control: ${control}`);
     switch (control) {
       case 1:
         let progress = document.getElementById("progress-current");
-        if(audio.currentTime === 0){
-        audio.load();
-        audio.play();
-        setInterval(function () {
-          let seconds = audio.currentTime.toFixed(2);
-          let porcent = (Number.parseFloat(seconds) / audio.duration) * 100;
-          progress.style.width = Number(porcent).toFixed(0).toString() + "%";
-        }, 1);
-      }else{
-        audio.load();
-      }
+        if (audio.currentTime === 0) {
+          audio.load();
+          audio.play();
+          setInterval(function () {
+            let seconds = audio.currentTime.toFixed(2);
+            let porcent = (Number.parseFloat(seconds) / audio.duration) * 100;
+            progress.style.width = Number(porcent).toFixed(0).toString() + "%";
+          }, 1);
+        } else {
+          audio.load();
+        }
         break;
       case "next":
         let next = this.state.playlistTrack.findIndex((find) => {
@@ -147,12 +151,12 @@ export default class Player extends Component {
         });
         this.getPlayerTrack(this.state.playlistTrack[next + 1].track.id);
         break;
-      case "prev":  
-      let prev = this.state.playlistTrack.findIndex((find) => {
-        return find.track.id === currentMusic.id;
-      });
-      this.getPlayerTrack(this.state.playlistTrack[prev - 1].track.id);
-      break;
+      case "prev":
+        let prev = this.state.playlistTrack.findIndex((find) => {
+          return find.track.id === currentMusic.id;
+        });
+        this.getPlayerTrack(this.state.playlistTrack[prev - 1].track.id);
+        break;
       default:
         console.log(`Deu ruim - control:  ${control}`);
         break;
@@ -175,8 +179,7 @@ export default class Player extends Component {
                 alt="img-songs"
               />
             }
-            <span className="player-name">{this.state.currentTrack.name}
-            </span>
+            <span className="player-name">{this.state.currentTrack.name}</span>
             <audio
               id={this.state.currentTrack.id}
               src={this.state.currentTrack.preview_url}
