@@ -1,5 +1,5 @@
 {
-  "homepage": "http://kayo12.github.io/spotify-music",
+  "homepage": "https://spotify-music-five.vercel.app",
   "name": "music-web",
   "version": "0.1.0",
   "private": true,
@@ -13,10 +13,10 @@
     "react-router": "4.2.0",
     "react-router-dom": "4.2.2",
     "spotify-web-api-js": "^1.5.2",
-    "react-scripts": "^5.0.1",
     "web-vitals": "^3.0.1"
   },
   "devDependencies": {
+    "react-scripts": "^5.0.1",
     "gh-pages": "^4.0.0"
   },
   "scripts": {
