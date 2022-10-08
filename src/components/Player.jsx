@@ -11,7 +11,7 @@ const stateInitial = {
   albumOpen: false,
   currentTrack: "",
   oldTrack: "",
-  msgLogin: "Necessario realizar login no spotify para exibir seus albuns",
+  msgLogin: "Necessario realizar ajustado login no spotify para exibir seus albuns",
 };
 
 export default class Player extends Component {
@@ -72,6 +72,7 @@ export default class Player extends Component {
         console.log("Pegou o track ID");
         this.setState({ currentTrack: data });
         console.log(this.state.currentTrack);
+        
       },
       (err) => {
         console.log("Deu ruim ao pegar a track");
