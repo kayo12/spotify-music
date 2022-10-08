@@ -29,7 +29,7 @@ const Home = (props) => {
       <div className="home">
         <Nav />
         <Routes token={token}/>
-        <Footer token={token}/>
+        <Footer />
       </div>
     </HashRouter>
   );

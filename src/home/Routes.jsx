@@ -7,7 +7,7 @@ import MyList from "../components/MyList";
 
 const Routes = (props) => (
   <Switch>
-    <Route  path="/" component={Music} />
+    <Route exact path="/" component={Music} />
     <Route
       exact
       path="/mylist"
@@ -18,6 +18,7 @@ const Routes = (props) => (
       path="/player"
       render={() => <Player {...props} token={props.token} />}
     />
+    <Route  path="*" component={Music}/>
   </Switch>
 );
 
